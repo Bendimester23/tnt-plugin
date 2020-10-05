@@ -1,0 +1,9 @@
+name: Random-Good-Plugin
+api-version: 1.14
+version: 1.0
+main: hu.bendi.randomstuff.RandomPlugin
+description: A really good plugin made by me.
+author: Me.
+commands:
+    tnt:
+        description: A fun command.
