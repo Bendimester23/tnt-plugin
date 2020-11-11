@@ -1,13 +1,5 @@
 package hu.bendi.randomstuff.util;
 
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.libs.org.apache.commons.codec.binary.Base64;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
-
-import java.lang.reflect.Field;
-import java.util.UUID;
-
 public class CustomHead {
 
     //public static ItemStack CALM = getSkull("http://textures.minecraft.net/texture/b59c0e9d83dbf04fbdaa7eb2bde8e9fc67994f83420301e582248680fa819f61");
