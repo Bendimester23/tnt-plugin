@@ -9,18 +9,30 @@ import org.bukkit.inventory.ItemStack;
 public class RecipeManager {
 
     public static Recipe COMPRESSED_TNT;
+    public static Recipe BUILDER_TNT;
 
     static {
         COMPRESSED_TNT = new Recipe(new ItemStack[][]
                 {
-                        {Ingredients.GLUE, Items.OBSIDIAN,Items.PISTON,Items.PISTON,Items.OBSIDIAN,Ingredients.GLUE},
-                        {Items.OBSIDIAN,Items.TNT,Items.TNT,Items.TNT,Items.TNT,Items.OBSIDIAN},
-                        {Items.PISTON,Items.TNT,Ingredients.GLUE,Ingredients.TERMIT, Items.TNT,Items.PISTON},
-                        {Items.PISTON,Items.TNT, Ingredients.TERMIT,Ingredients.GLUE,Items.TNT,Items.PISTON},
-                        {Items.OBSIDIAN,Items.TNT,Items.TNT,Items.TNT,Items.TNT,Items.OBSIDIAN},
-                        {Ingredients.GLUE, Items.OBSIDIAN,Items.PISTON,Items.PISTON,Items.OBSIDIAN,Ingredients.GLUE}
+                        {Ingredients.GLUE, Items.OBSIDIAN, Items.PISTON,       Items.PISTON,        Items.OBSIDIAN, Ingredients.GLUE},
+                        {Items.OBSIDIAN,   Items.TNT,      Items.TNT,          Items.TNT,           Items.TNT,      Items.OBSIDIAN},
+                        {Items.PISTON,     Items.TNT,      Ingredients.GLUE,   Ingredients.TERMIT,  Items.TNT,      Items.PISTON},
+                        {Items.PISTON,     Items.TNT,      Ingredients.TERMIT, Ingredients.GLUE,    Items.TNT,      Items.PISTON},
+                        {Items.OBSIDIAN,   Items.TNT,      Items.TNT,          Items.TNT,           Items.TNT,      Items.OBSIDIAN},
+                        {Ingredients.GLUE, Items.OBSIDIAN, Items.PISTON,       Items.PISTON,        Items.OBSIDIAN, Ingredients.GLUE}
                 },
                 Tnts.COMPRESSED_TNT);
+
+        BUILDER_TNT = new Recipe(new ItemStack[][]
+                {
+                        {Items.RED_CONCRETE,   Items.RED_CONCRETE, Items.RED_CONCRETE, Items.RED_CONCRETE,  Items.RED_CONCRETE, Items.RED_CONCRETE},
+                        {Items.RED_CONCRETE,   Items.STONE,        Items.STONE,        Items.STONE,         Items.STONE,        Items.RED_CONCRETE},
+                        {Items.WHITE_CONCRETE, Items.STONE,        Items.TNT,          Items.TNT,           Items.STONE,        Items.WHITE_CONCRETE},
+                        {Items.WHITE_CONCRETE, Items.STONE,        Items.TNT,          Items.TNT,           Items.STONE,        Items.WHITE_CONCRETE},
+                        {Items.RED_CONCRETE,   Items.STONE,        Items.STONE,        Items.STONE,         Items.STONE,        Items.RED_CONCRETE},
+                        {Items.RED_CONCRETE,   Items.RED_CONCRETE, Items.RED_CONCRETE, Items.RED_CONCRETE,  Items.RED_CONCRETE, Items.RED_CONCRETE}
+                },
+                Tnts.BUILDER_TNT);
     }
 
     public static ItemStack getResult(ItemStack[][] items) {

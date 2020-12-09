@@ -1,5 +1,6 @@
 package hu.bendi.randomstuff.listener;
 
+import hu.bendi.randomstuff.mashines.Grinder;
 import hu.bendi.randomstuff.mashines.PyroWorkshop;
 import hu.bendi.randomstuff.util.Ingredients;
 import org.bukkit.Location;
@@ -16,7 +17,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static org.bukkit.Material.*;
+import static org.bukkit.Material.BLAST_FURNACE;
+import static org.bukkit.Material.IRON_INGOT;
 
 public class MutiblockListener implements Listener {
 
@@ -47,15 +49,7 @@ public class MutiblockListener implements Listener {
                 break;
             case GRINDSTONE:
                 if (!e.hasItem()) return;
-                if (Objects.requireNonNull(e.getItem()).getType() != BRICK) return;
-                e.getPlayer().getInventory().removeItem(Ingredients.RUSTY_IRON);
-                e.getPlayer().getInventory().addItem(Ingredients.RUST);
-                e.getPlayer().getInventory().addItem(new ItemStack(IRON_NUGGET,8));
-                e.getPlayer().getWorld().playSound(b.getLocation(), Sound.BLOCK_GRINDSTONE_USE,100,100);
-                b.getWorld().getBlockAt(0,0,0).setType(COCOA);
-                b.getWorld().spawnParticle(Particle.BLOCK_CRACK, b.getLocation(), 10, b.getWorld().getBlockAt(0,0,0).getBlockData());
-                b.getWorld().getBlockAt(0,0,0).setType(BEDROCK);
-                e.setCancelled(true);
+                Grinder.process(e);
                 break;
         }
 

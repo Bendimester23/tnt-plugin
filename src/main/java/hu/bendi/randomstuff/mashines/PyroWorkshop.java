@@ -12,7 +12,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class PyroWorkshop {
 
@@ -40,8 +39,13 @@ public class PyroWorkshop {
         gui.setItem(25,resultI);
 
         gui.setDefaultClickAction((e) -> Bukkit.getScheduler().runTaskLaterAsynchronously(RandomPlugin.INSTANCE, () -> {
-            if (Objects.requireNonNull(Objects.requireNonNull(e.getClickedInventory()).getItem(e.getSlot())).getType() == Material.AIR
-                    || Objects.requireNonNull(e.getCursor()).getType() == Material.AIR) e.setCancelled(true);
+            if (e.getClickedInventory() == null) {
+                System.out.println("null1");
+                e.setCancelled(true);
+                return;
+            }
+            if (e.getClickedInventory().getItem(e.getSlot()) == null) { System.out.println("null2"); e.setCancelled(true); return; }
+            if (e.getClickedInventory().getItem(e.getSlot()).getType() == Material.AIR || e.getCursor().getType() == Material.AIR) { System.out.println("null3"); e.setCancelled(true); return; }
             ItemStack[][] itms = new ItemStack[6][6];
 
             itms[0] = new ItemStack[6];

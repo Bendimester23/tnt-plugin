@@ -25,4 +25,14 @@ public class Ingredients {
             .setName("Rust")
             .setCustomModelData(61)
             .build();
+
+    public static ItemStack IRON_DUST = new ItemBuilder().createItem(Material.GUNPOWDER)
+            .setName("Iron Dust")
+            .setCustomModelData(62)
+            .build();
+
+    public static ItemStack FINE_GUNPOWDER = new ItemBuilder().createItem(Material.GUNPOWDER)
+            .setName("Fine Gunpowder")
+            .setCustomModelData(63)
+            .build();
 }

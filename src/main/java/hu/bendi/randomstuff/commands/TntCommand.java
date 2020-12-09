@@ -35,24 +35,37 @@ public class TntCommand implements CommandExecutor, Listener {
     @EventHandler
     public void boom(ExplosionPrimeEvent event) {
         if (event.getEntity().hasMetadata("custom-tnt")) {
+            Location loc = event.getEntity().getLocation();
             switch (event.getEntity().getMetadata("custom-tnt").get(0).asInt()) {
                 case 1:
-                    oszdod(event.getEntity().getLocation());
+                    for (int x = 0; x < 9; x++) {
+                        for (int z = 0;z < 9; z++) {
+                            int xx = x - 5;
+                            int zz = z - 5;
+                            Entity e = loc.getWorld().spawnEntity(new Location(loc.getWorld(),
+                                            loc.getX()+(xx*5),loc.getY()+5,loc.getZ()+(zz*5)),
+                                    EntityType.PRIMED_TNT);
+                        }
+                    }
+                    break;
+                case 2:
+                    for (int x = 0; x < 9; x++) {
+                        for (int z = 0;z < 9; z++) {
+                            for (int y = 0; y < 9; y++) {
+                                int xx = x - 5;
+                                int yy = y - 5;
+                                int zz = z - 5;
+                                loc.getWorld().getBlockAt(loc.getBlockX() - xx, loc.getBlockY() - yy, loc.getBlockZ() - zz).setType(Material.STONE);
+                            }
+                        }
+                    }
                     break;
             }
         }
     }
 
     public void oszdod(Location loc) {
-        for (int x = 0; x < 9; x++) {
-            for (int z = 0;z < 9; z++) {
-                int xx = x - 5;
-                int zz = z - 5;
-                Entity e = loc.getWorld().spawnEntity(new Location(loc.getWorld(),
-                                loc.getX()+(xx*5),loc.getY()+5,loc.getZ()+(zz*5)),
-                                EntityType.PRIMED_TNT);
-            }
-        }
+
     }
 
     @EventHandler
@@ -62,7 +75,7 @@ public class TntCommand implements CommandExecutor, Listener {
         if (event.getItemInHand().getItemMeta().getCustomModelData() != 30) return;
         event.getBlock().setType(Material.AIR);
         Entity e = event.getBlock().getLocation().getWorld().spawnEntity(event.getBlock().getLocation(), EntityType.PRIMED_TNT);
-        e.setMetadata("custom-tnt", new FixedMetadataValue(RandomPlugin.INSTANCE,1));
+        e.setMetadata("custom-tnt", new FixedMetadataValue(RandomPlugin.INSTANCE,event.getItemInHand().getItemMeta().getCustomModelData() - 29));
     }
 
     @EventHandler
@@ -78,7 +91,7 @@ public class TntCommand implements CommandExecutor, Listener {
     @EventHandler
     public void chunkLoad(ChunkLoadEvent e) {
         if (!e.isNewChunk()) return;
-        if (e.getChunk().getBlock(0,0,0).getBiome() != Biome.OCEAN) return;
+        if (e.getChunk().getBlock(0,0,0).getBiome() != Biome.LUKEWARM_OCEAN && e.getChunk().getBlock(0,0,0).getBiome() != Biome.WARM_OCEAN) return;
         System.out.println("generate");
     }
 }

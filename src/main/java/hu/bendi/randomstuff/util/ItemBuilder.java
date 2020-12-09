@@ -3,6 +3,7 @@ package hu.bendi.randomstuff.util;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -58,6 +59,11 @@ public class ItemBuilder {
 
     public ItemBuilder addLore(String... lore) {
         Collections.addAll(im.getLore(),lore);
+        return this;
+    }
+
+    public ItemBuilder hideEnchants() {
+        im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         return this;
     }
 
